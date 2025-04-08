@@ -6,9 +6,8 @@ const usuariosRoutes = require('./routes/usuarios');
 app.use(cors());
 app.use(express.json());
 
-app.use('/api', usuariosRoutes);
+app.use('/usuarios', usuariosRoutes);
 
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+app.listen(3000, () => {
+  console.log('🚀 Servidor rodando em http://localhost:3000');
 });
