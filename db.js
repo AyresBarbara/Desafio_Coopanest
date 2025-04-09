@@ -29,6 +29,7 @@ function inserirUsuario(user){
 }
 function atualizarUsuario( id, user){
     const usuario = usuarios.find(usuario => usuario.id === id);
+    if(!usuario) return;
     usuario.nome = user.nome;
     usuario.email = user.email;
     usuario.telefone = user.telefone;
@@ -43,15 +44,10 @@ function atualizarUsuario( id, user){
     usuario.endereco.estado = user.endereco.estado;
     usuario.endereco.cep = user.endereco.cep;
 }
-function deletarUsuario(id){
-    const index = usuarios.findIndex(usuario => usuario.id === id);
-    usuarios.splice[index,1];
-    return usuarios; 
-}
+
 module.exports = {
     selecionarUsuarios,
     selecionarUsuarioId,
     inserirUsuario,
-    atualizarUsuario,
-    deletarUsuario
+    atualizarUsuario
 }
