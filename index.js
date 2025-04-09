@@ -6,7 +6,7 @@ const express = require("express");
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json())
 
 app.put("/dados/:id", (req, resp) => {
     const id = parseInt(req.params.id);
@@ -14,20 +14,23 @@ app.put("/dados/:id", (req, resp) => {
     db.atualizarUsuario(id, user);
     resp.sendStatus(200);
 })
-app.post("/dados", (req, resp) => {
+
+app.post("/dados", async (req, resp) => {
     const user = req.body;
-    db.inserirUsuario(user);
+    await db.inserirUsuario(user);
     resp.sendStatus(201);
 
 })
 
-app.get("/dados/:id", (req, resp) => {
+app.get("/dados/:id",async(req, resp) => {
     const id = parseInt(req.params.id);
-    resp.json(db.selecionarUsuarioId(id));
+    const results = await db.selecionarUsuarioId(id);
+    resp.json(results);
 })
 
-app.get("/dados", (req, resp) => {
-    resp.json(db.selecionarUsuarios());
+app.get("/dados", async (req, resp) => {
+    const results = await db.selecionarUsuarios();
+    resp.json(results);
 })
 
 
