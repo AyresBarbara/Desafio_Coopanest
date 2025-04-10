@@ -1,0 +1,70 @@
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Telefone</th>
+      <th>Sexo</th>
+      <th>Data de Nascimento</th>
+      <th>Profissão</th>
+      <th>Estado Civil</th>
+      <th>Endereço</th>
+      <th>Última Atualização</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let usuario of usuarios">
+      <td *ngIf="editando !== usuario.id_usuario">{{ usuario.nome }}</td>
+      <td *ngIf="editando === usuario.id_usuario">
+        <input [(ngModel)]="usuario.nome">
+      </td>
+
+      <td *ngIf="editando !== usuario.id_usuario">{{ usuario.email }}</td>
+      <td *ngIf="editando === usuario.id_usuario">
+        <input [(ngModel)]="usuario.email">
+      </td>
+
+      <td *ngIf="editando !== usuario.id_usuario">{{ usuario.telefone }}</td>
+      <td *ngIf="editando === usuario.id_usuario">
+        <input [(ngModel)]="usuario.telefone">
+      </td>
+
+      <td *ngIf="editando !== usuario.id_usuario">{{ usuario.sexo }}</td>
+      <td *ngIf="editando === usuario.id_usuario">
+        <select [(ngModel)]="usuario.sexo">
+          <option value="Masculino">Masculino</option>
+          <option value="Feminino">Feminino</option>
+          <option value="Outro">Outro</option>
+        </select>
+      </td>
+
+      <td *ngIf="editando !== usuario.id_usuario">{{ usuario.data_nascimento }}</td>
+      <td *ngIf="editando === usuario.id_usuario">
+        <input type="date" [(ngModel)]="usuario.data_nascimento">
+      </td>
+
+      <td *ngIf="editando !== usuario.id_usuario">{{ usuario.profissao }}</td>
+      <td *ngIf="editando === usuario.id_usuario">
+        <input [(ngModel)]="usuario.profissao">
+      </td>
+
+      <td *ngIf="editando !== usuario.id_usuario">{{ usuario.estado_civil }}</td>
+      <td *ngIf="editando === usuario.id_usuario">
+        <select [(ngModel)]="usuario.estado_civil">
+          <option value="Solteiro(a)">Solteiro(a)</option>
+          <option value="Casado(a)">Casado(a)</option>
+          <option value="Divorciado(a)">Divorciado(a)</option>
+          <option value="Viúvo(a)">Viúvo(a)</option>
+        </select>
+      </td>
+
+      <td *ngIf="editando !== usuario.id_usuario">{{ usuario.endereco }}</td>
+      <td *ngIf="editando === usuario.id_usuario">
+        <input [(ngModel)]="usuario.endereco">
+      </td>
+
+      <td>{{ usuario.data_atualizacao | date: 'dd/MM/yyyy HH:mm' }}</td>
+
+      <td>
+        <button *ngIf="editando !== usuario.id_usuario" (click)="editar(usuario.id_usuario!)">✏️</button>
+        <button *ngIf="editando === usuario.id_usuario" (click)="salvar(usuario)">💾</button>

@@ -1,0 +1,59 @@
+<form (ngSubmit)="enviarFormulario()" #form="ngForm" style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px;">
+
+  <label>
+    Nome:
+    <input type="text" name="nome" [(ngModel)]="usuario.nome" required #nome="ngModel" />
+    <div *ngIf="nome.invalid && nome.touched" class="erro">Nome é obrigatório</div>
+  </label>
+
+  <label>
+    Email:
+    <input type="email" name="email" [(ngModel)]="usuario.email" required #email="ngModel" />
+    <div *ngIf="email.invalid && email.touched" class="erro">Email válido é obrigatório</div>
+  </label>
+
+  <label>
+    Telefone:
+    <input type="tel" name="telefone" [(ngModel)]="usuario.telefone" minlength="10" #telefone="ngModel" />
+    <div *ngIf="telefone.invalid && telefone.touched" class="erro">Mínimo 10 dígitos</div>
+  </label>
+
+  <label>
+    Sexo:
+    <select name="sexo" [(ngModel)]="usuario.sexo" required #sexo="ngModel">
+      <option value="">Selecione</option>
+      <option value="Masculino">Masculino</option>
+      <option value="Feminino">Feminino</option>
+      <option value="Outro">Outro</option>
+    </select>
+    <div *ngIf="sexo.invalid && sexo.touched" class="erro">Sexo é obrigatório</div>
+  </label>
+
+  <label>
+    Data de Nascimento:
+    <input type="date" name="data_nascimento" [(ngModel)]="usuario.data_nascimento" required #data_nascimento="ngModel" />
+    <div *ngIf="data_nascimento.invalid && data_nascimento.touched" class="erro">Campo obrigatório</div>
+  </label>
+
+  <label>
+    Profissão:
+    <input type="text" name="profissao" [(ngModel)]="usuario.profissao" />
+  </label>
+
+  <label>
+    Estado Civil:
+    <select name="estado_civil" [(ngModel)]="usuario.estado_civil">
+      <option value="Solteiro(a)">Solteiro(a)</option>
+      <option value="Casado(a)">Casado(a)</option>
+      <option value="Divorciado(a)">Divorciado(a)</option>
+      <option value="Viúvo(a)">Viúvo(a)</option>
+    </select>
+  </label>
+
+  <label>
+    Endereço:
+    <textarea name="endereco" [(ngModel)]="usuario.endereco" rows="3"></textarea>
+  </label>
+
+  <button type="submit" [disabled]="form.invalid">Enviar</button>
+</form>

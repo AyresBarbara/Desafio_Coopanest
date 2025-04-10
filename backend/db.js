@@ -15,7 +15,8 @@ async function inserirUsuario(user){
     await usuarios.query("INSERT INTO usuario_tb(nome, email, telefone, sexo, data_nascimento, profissao, estado_civil, endereco)VALUES(?, ?, ?, ?, ?, ? ,? ,? )", values);
 }
 async function atualizarUsuario( id, user){
-    const values = [ user.nome, user.email, user.telefone, user.sexo, user.data_nascimento, user.profissao,user.estado_civil, user.endereco, id];
+    const dataFormatada = new Date(user.data_nascimento).toISOString().split('T')[0];
+    const values = [ user.nome, user.email, user.telefone, user.sexo, dataFormatada, user.profissao,user.estado_civil, user.endereco, id];
     
     await usuarios.query(
        "UPDATE usuario_tb SET nome=?, email=?, telefone=?, sexo=?, data_nascimento=?, profissao=?, estado_civil=?, endereco=? WHERE id_usuario=?",
